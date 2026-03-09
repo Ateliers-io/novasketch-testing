@@ -1,0 +1,91 @@
+﻿node : (node:9176) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change at 
+any time
+At line:1 char:1
++ node 
+--experimental-vm-modules nod
+e_modules/jest/bin/jest.js 
+--config ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ((node:9  
+  176) Exp...nge at any ti   
+ me:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+FAIL tests/frontend-integrati
+on/auth.test.js (10.251 s)
+  NovaSketch Auth Page 
+Integrations
+    ├ù renders both Login 
+and Register forms correctly 
+(4237 ms)
+    ΓêÜ invalid login 
+attempts show contextual 
+errors (4202 ms)
+
+  ΓùÅ NovaSketch Auth Page 
+Integrations ΓÇ║ renders 
+both Login and Register 
+forms correctly
+
+    expect(received).toBeGrea
+terThan(expected)
+
+    Expected: > 2
+    Received:   0
+
+    [0m [90m 25 |[39m     
+    [90m// Simple smoke 
+test: assert the page hasn't 
+crashed and has inputs[39m
+     [90m 26 |[39m         
+[36mconst[39m inputs 
+[33m=[39m page[33m.[39mlo
+cator([32m'input'[39m)[33m
+;[39m
+    
+[31m[1m>[22m[39m[90m 27 
+|[39m         
+expect([36mawait[39m inputs
+[33m.[39mcount())[33m.[39
+mtoBeGreaterThan([35m2[39m)
+[33m;[39m [90m// Has 
+email, password, name, 
+etc.[39m
+     [90m    |[39m         
+                             
+[31m[1m^[22m[39m
+     [90m 28 |[39m
+     [90m 29 |[39m         
+[90m// Assert buttons 
+exist[39m
+     [90m 30 |[39m         
+[36mconst[39m buttons 
+[33m=[39m page[33m.[39mlo
+cator([32m'button'[39m)[33
+m;[39m[0m
+
+      at Object.<anonymous> (
+tests/frontend-integration/au
+th.test.js:27:38)
+
+Test Suites: 1 failed, 1 
+total
+Tests:       1 failed, 1 
+passed, 2 total
+Snapshots:   0 total
+Time:        10.515 s, 
+estimated 13 s
+Ran all test suites matching 
+tests/frontend-integration/au
+th.test.js.
