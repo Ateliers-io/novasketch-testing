@@ -1,0 +1,278 @@
+<html><head><meta charset="utf-8"/><title>NovaSketch Integration Test Report</title><style type="text/css">:root {
+  --text-primary: #eee;
+  --text-secondary: #aaa;
+  --success: #2ecc71;
+  --success-bright: #1e3d2a;
+  --danger: #e74c3c;
+  --danger-bright: #3d1e1e;
+  --warning: #f39c12;
+  --warning-bright: #3d2c1e;
+  --panel: #1f1f1f;
+  --border: #444;
+  --disabled: #666;
+  background-color: #121212;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">NovaSketch Integration Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2026-03-09 21:34:20</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (7)</div><div class="summary-passed ">7 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (54)</div><div class="summary-passed ">54 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\shapeDataPersistence.test.js</div><div class="suite-time warn">20.045s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-01: GET /api/rooms/:roomId/shapes</div><div class="test-title">should return all shapes in a seeded room</div><div class="test-status">passed</div><div class="test-duration">0.306s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-01: GET /api/rooms/:roomId/shapes</div><div class="test-title">should return count: 0 for a room with no shapes</div><div class="test-status">passed</div><div class="test-duration">0.041s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-01: GET /api/rooms/:roomId/shapes</div><div class="test-title">should return 404 for a non-existent room</div><div class="test-status">passed</div><div class="test-duration">0.03s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-02: GET /api/rooms/:roomId/shape/:shapeId</div><div class="test-title">should return the specific shape by ID</div><div class="test-status">passed</div><div class="test-duration">0.041s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-02: GET /api/rooms/:roomId/shape/:shapeId</div><div class="test-title">should return 404 when shape does not exist in room</div><div class="test-status">passed</div><div class="test-duration">0.115s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-02: GET /api/rooms/:roomId/shape/:shapeId</div><div class="test-title">should return 404 when room does not exist</div><div class="test-status">passed</div><div class="test-duration">0.034s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-03: Multiple Shape Types Persisted Correctly</div><div class="test-title">should correctly store and retrieve freehand, rectangle, circle, and text shapes</div><div class="test-status">passed</div><div class="test-duration">0.043s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-04: Shape &amp; Room Data Persistence &gt; IT-04-04: Shape Property Integrity</div><div class="test-title">should preserve all custom properties through Yjs encode/decode cycle</div><div class="test-status">passed</div><div class="test-duration">0.041s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\historyTimeline.test.js</div><div class="suite-time warn">20.555s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-01: GET /api/history/:sessionId</div><div class="test-title">should return snapshots sorted by timestamp ascending</div><div class="test-status">passed</div><div class="test-duration">0.525s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-01: GET /api/history/:sessionId</div><div class="test-title">should return empty array for a session with no history</div><div class="test-status">passed</div><div class="test-duration">0.033s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-01: GET /api/history/:sessionId</div><div class="test-title">should return base64 encoded updates that can be decoded by Yjs</div><div class="test-status">passed</div><div class="test-duration">0.271s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-02: DELETE /api/history/:sessionId</div><div class="test-title">should delete all snapshots for a session and return count</div><div class="test-status">passed</div><div class="test-duration">0.09s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-02: DELETE /api/history/:sessionId</div><div class="test-title">should return deleted: 0 for a session with no history</div><div class="test-status">passed</div><div class="test-duration">0.033s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-02: DELETE /api/history/:sessionId</div><div class="test-title">should not affect snapshots from other sessions</div><div class="test-status">passed</div><div class="test-duration">0.063s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-05: History / Timeline Replay &gt; IT-05-03: Timeline Replay Data Integrity</div><div class="test-title">should produce incrementally larger snapshots as shapes are added</div><div class="test-status">passed</div><div class="test-duration">0.082s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\authCanvasIntegration.test.js</div><div class="suite-time warn">25.303s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-01: Registration → Canvas Creation → Ownership Verification</div><div class="test-title">should allow a newly registered user to create a canvas and be recorded as owner</div><div class="test-status">passed</div><div class="test-duration">1.351s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-02: Login → Access /api/canvas/mine</div><div class="test-title">should return the user canvas list after login</div><div class="test-status">passed</div><div class="test-duration">1.873s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-03: Expired/Invalid Token → Canvas Route Rejection</div><div class="test-title">should reject canvas creation with an expired JWT</div><div class="test-status">passed</div><div class="test-duration">0.965s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-03: Expired/Invalid Token → Canvas Route Rejection</div><div class="test-title">should reject canvas creation with a tampered token</div><div class="test-status">passed</div><div class="test-duration">0.03s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-04: /me Endpoint Includes Canvas References</div><div class="test-title">should return user profile with canvases array populated</div><div class="test-status">passed</div><div class="test-duration">0.911s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-01: Auth ↔ Canvas Integration &gt; IT-01-05: Canvas Details Return Populated Owner</div><div class="test-title">should return owner displayName when fetching canvas details</div><div class="test-status">passed</div><div class="test-duration">0.866s</div></div></div></div></details><details id="suite-4" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\healthAndErrors.test.js</div><div class="suite-time warn">5.71s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-01: GET /health</div><div class="test-title">should return 200 with { status: "OK" }</div><div class="test-status">passed</div><div class="test-duration">0.069s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-02: GET /</div><div class="test-title">should return a welcome message</div><div class="test-status">passed</div><div class="test-duration">0.085s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-03: 404 for Unknown Routes</div><div class="test-title">should return 404 for GET /api/nonexistent</div><div class="test-status">passed</div><div class="test-duration">0.064s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-03: 404 for Unknown Routes</div><div class="test-title">should return 404 for POST /api/unknown</div><div class="test-status">passed</div><div class="test-duration">0.085s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-03: 404 for Unknown Routes</div><div class="test-title">should return JSON error body for 404</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-04: Missing Auth on Protected Routes</div><div class="test-title">should return 401 for POST /api/canvas without auth</div><div class="test-status">passed</div><div class="test-duration">0.029s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-04: Missing Auth on Protected Routes</div><div class="test-title">should return 401 for GET /api/canvas/mine without auth</div><div class="test-status">passed</div><div class="test-duration">0.027s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-04: Missing Auth on Protected Routes</div><div class="test-title">should return 401 for GET /api/auth/me without auth</div><div class="test-status">passed</div><div class="test-duration">0.032s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-05: API Returns JSON</div><div class="test-title">should return application/json for health endpoint</div><div class="test-status">passed</div><div class="test-duration">0.031s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-06: Health &amp; Error Handling &gt; IT-06-05: API Returns JSON</div><div class="test-title">should return application/json for canvas GET</div><div class="test-status">passed</div><div class="test-duration">0.057s</div></div></div></div></details><details id="suite-5" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\sessionLockEnforcement.test.js</div><div class="suite-time warn">27.088s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-01: Lock Toggle Persists in Database</div><div class="test-title">should persist lock state and return it on subsequent GET</div><div class="test-status">passed</div><div class="test-duration">1.538s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-02: Non-Owner Lock Rejection</div><div class="test-title">should return 404 when a non-owner tries to lock a canvas</div><div class="test-status">passed</div><div class="test-duration">1.805s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-03: Invalid Lock Value Rejected</div><div class="test-title">should return 400 when is_locked is not a boolean</div><div class="test-status">passed</div><div class="test-duration">0.888s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-03: Invalid Lock Value Rejected</div><div class="test-title">should return 400 when is_locked is a number</div><div class="test-status">passed</div><div class="test-duration">0.868s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-04: Locked Canvas is Still Readable</div><div class="test-title">should allow GET /api/canvas/:id even when locked</div><div class="test-status">passed</div><div class="test-duration">0.934s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-04: Locked Canvas is Still Readable</div><div class="test-title">should allow GET /api/canvas/mine to include locked canvases</div><div class="test-status">passed</div><div class="test-duration">1.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-03: Session Lock Enforcement &gt; IT-03-05: Lock on Non-Existent Canvas</div><div class="test-title">should return 404 when locking a non-existent canvas</div><div class="test-status">passed</div><div class="test-duration">0.812s</div></div></div></div></details><details id="suite-6" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\participantManagement.test.js</div><div class="suite-time warn">29.761s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-01: Owner Adds Participant via API</div><div class="test-title">should add a participant with the specified role</div><div class="test-status">passed</div><div class="test-duration">2.381s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-02: Non-Owner Rejection</div><div class="test-title">should return 403 when a non-owner tries to add a participant</div><div class="test-status">passed</div><div class="test-duration">2.562s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-03: Adding Non-Existent User</div><div class="test-title">should return 404 when adding a user that does not exist</div><div class="test-status">passed</div><div class="test-duration">0.873s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-04: Joined Canvas Appears in Guest /mine</div><div class="test-title">should show the joined canvas in the guest user /mine list</div><div class="test-status">passed</div><div class="test-duration">1.896s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-05: Canvas Deletion Cleans Up Memberships</div><div class="test-title">should remove all CanvasMembership records when canvas is deleted</div><div class="test-status">passed</div><div class="test-duration">1.508s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-07: Participant Management &gt; IT-07-06: User With Multiple Canvases</div><div class="test-title">should list all canvases a user owns or has joined</div><div class="test-status">passed</div><div class="test-duration">1.333s</div></div></div></div></details><details id="suite-7" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\integration\canvasLifecycle.test.js</div><div class="suite-time warn">31.129s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-01: Complete Canvas Lifecycle</div><div class="test-title">should support the full create → rename → lock → unlock → delete flow</div><div class="test-status">passed</div><div class="test-duration">1.602s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-02: Multi-User Join Workflow</div><div class="test-title">should allow a guest to join a canvas and appear in both Canvas.participants and User.canvases</div><div class="test-status">passed</div><div class="test-duration">1.832s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-02: Multi-User Join Workflow</div><div class="test-title">should not duplicate participants on re-join</div><div class="test-status">passed</div><div class="test-duration">1.777s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-03: Owner Rejoin Own Canvas</div><div class="test-title">should return "Joined as owner" without modifying participants</div><div class="test-status">passed</div><div class="test-duration">0.935s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-04: Non-Owner Cannot Rename/Delete Canvas</div><div class="test-title">should return 403 when a non-owner tries to rename a canvas</div><div class="test-status">passed</div><div class="test-duration">1.734s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-04: Non-Owner Cannot Rename/Delete Canvas</div><div class="test-title">should return 403 when a non-owner tries to delete a canvas</div><div class="test-status">passed</div><div class="test-duration">1.438s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-05: isCollab Flag Upon Join</div><div class="test-title">should return isCollab: true on /mine after a guest joins</div><div class="test-status">passed</div><div class="test-duration">1.298s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-06: 404 Responses for Missing Canvases</div><div class="test-title">should return 404 for GET on non-existent canvas</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-06: 404 Responses for Missing Canvases</div><div class="test-title">should return 404 for JOIN on non-existent canvas</div><div class="test-status">passed</div><div class="test-duration">0.668s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">IT-02: Canvas Session Lifecycle &gt; IT-02-06: 404 Responses for Missing Canvases</div><div class="test-title">should return 404 for DELETE on non-existent canvas</div><div class="test-status">passed</div><div class="test-duration">0.559s</div></div></div></div></details></main></body></html>

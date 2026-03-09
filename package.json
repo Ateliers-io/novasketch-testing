@@ -1,0 +1,40 @@
+{
+  "name": "novasketch-testing",
+  "version": "1.0.0",
+  "description": "Integration, Regression, and E2E test suite for NovaSketch",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/backend-integration --config jest.integration.config.js",
+    "test:regression": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/regression --config jest.regression.config.js",
+    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/e2e --config jest.e2e.config.js",
+    "test:frontend": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.frontend.config.js",
+    "test:all": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.integration.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ateliers-io/novasketch-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ateliers-io/novasketch-testing/issues"
+  },
+  "homepage": "https://github.com/Ateliers-io/novasketch-testing#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "bcrypt": "^6.0.0",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.3.1",
+    "jest": "^30.2.0",
+    "jest-html-reporter": "^4.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "lib0": "^0.2.117",
+    "playwright": "^1.58.2",
+    "supertest": "^7.2.2",
+    "ws": "^8.19.0",
+    "y-protocols": "^1.0.7",
+    "yjs": "^13.6.29"
+  }
+}

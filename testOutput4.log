@@ -1,0 +1,174 @@
+﻿node : (node:26796) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change at 
+any time
+At line:1 char:1
++ node 
+--experimental-vm-modules nod
+e_modules/jest/bin/jest.js 
+--config ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ((node:2  
+  6796) Ex...nge at any ti   
+ me:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+FAIL tests/frontend-integrati
+on/auth.test.js
+  NovaSketch Auth Page 
+Integrations
+    ├ù renders both Login 
+and Register forms correctly 
+(1187 ms)
+    ├ù invalid login 
+attempts show contextual 
+errors (461 ms)
+
+  ΓùÅ NovaSketch Auth Page 
+Integrations ΓÇ║ renders 
+both Login and Register 
+forms correctly
+
+    expect(received).toBe(exp
+ected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+    [0m [90m 25 |[39m     
+    [36mconst[39m 
+registerTab [33m=[39m page
+[33m.[39mlocator([32m'butto
+n:has-text("Register"), 
+button:has-text("Sign Up")'[
+39m)[33m.[39mfirst()[33m;
+[39m
+     [90m 26 |[39m
+    
+[31m[1m>[22m[39m[90m 27 
+|[39m         
+expect([36mawait[39m loginT
+ab[33m.[39misVisible())[33
+m.[39mtoBe([36mtrue[39m)[
+33m;[39m
+     [90m    |[39m         
+                             
+      [31m[1m^[22m[39m
+     [90m 28 |[39m         
+expect([36mawait[39m regist
+erTab[33m.[39misVisible())
+[33m.[39mtoBe([36mtrue[39m
+)[33m;[39m
+     [90m 29 |[39m
+     [90m 30 |[39m         
+[36mconst[39m emailInput 
+[33m=[39m page[33m.[39mlo
+cator([32m'input[type="email
+"], input[name="email"]'[39m
+)[33m;[39m[0m
+
+      at Object.<anonymous> (
+tests/frontend-integration/au
+th.test.js:27:44)
+
+  ΓùÅ NovaSketch Auth Page 
+Integrations ΓÇ║ invalid 
+login attempts show 
+contextual errors
+
+    locator.fill: Error: 
+strict mode violation: locato
+r('input[type="email"], 
+input[name="email"]') 
+resolved to 2 elements:
+        1) <input value="" 
+type="email" name="email" 
+autocomplete="email" 
+placeholder="Email address" 
+class="ns-inp w-full px-4 
+py-3 bg-[#1F2833]/40 border 
+rounded-xl text-[.85rem] 
+text-white/95 
+placeholder-white/25 
+outline-none transition-all 
+duration-300 
+backdrop-blur-sm 
+border-white/[.07] pr-10"/> 
+aka getByRole('textbox', { 
+name: 'Email address' })
+        2) <input value="" 
+type="email" name="email" 
+autocomplete="email" 
+placeholder="Email address" 
+class="ns-inp w-full px-4 
+py-3 bg-[#1F2833]/40 border 
+rounded-xl text-[.85rem] 
+text-white/95 
+placeholder-white/25 
+outline-none transition-all 
+duration-300 
+backdrop-blur-sm 
+border-white/[.07] pr-10"/> 
+aka locator('form').filter({ 
+hasText: 'NovaSketchSign 
+InPick up' 
+}).getByPlaceholder('Email 
+address')
+
+    Call log:
+    [2m  - waiting for locat
+or('input[type="email"], 
+input[name="email"]')[22m
+
+    [0m [90m 50 |[39m     
+    [36mconst[39m 
+submitBtn [33m=[39m page[3
+3m.[39mlocator([32m'button[
+type="submit"], 
+button:has-text("Sign In"), b
+utton:has-text("Log")'[39m)
+[33m;[39m
+     [90m 51 |[39m
+    
+[31m[1m>[22m[39m[90m 52 
+|[39m         
+[36mawait[39m emailInput[3
+3m.[39mfill([32m`test-user-
+${crypto.randomUUID()}@invali
+d.com`[39m)[33m;[39m
+     [90m    |[39m         
+                 
+[31m[1m^[22m[39m
+     [90m 53 |[39m         
+[36mawait[39m passwordInput
+[33m.[39mfill([32m'WrongPa
+ss123!'[39m)[33m;[39m
+     [90m 54 |[39m
+     [90m 55 |[39m         
+[36mawait[39m page[33m.[3
+9mwaitForTimeout([35m500[39
+m)[33m;[39m[0m
+
+      at Object.<anonymous> (
+tests/frontend-integration/au
+th.test.js:52:26)
+
+Test Suites: 1 failed, 1 
+total
+Tests:       2 failed, 2 
+total
+Snapshots:   0 total
+Time:        4.038 s, 
+estimated 8 s
+Ran all test suites matching 
+tests/frontend-integration/au
+th.test.js.

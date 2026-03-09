@@ -1,0 +1,117 @@
+﻿node : FAIL tests/frontend-in
+tegration/board.test.js
+At line:1 char:1
++ node 
+--experimental-vm-modules nod
+e_modules/jest/bin/jest.js 
+--config ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (FAIL te  
+  sts/fron...n/board.test.   
+ js:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+  ΓùÅ Test suite failed to 
+run
+
+    ReferenceError: jest is 
+not defined
+
+    [0m [90m 1 |[39m 
+[36mimport[39m { chromium 
+} [36mfrom[39m [32m'playwr
+ight'[39m[33m;[39m
+     [90m 2 |[39m
+    
+[31m[1m>[22m[39m[90m 3 
+|[39m jest[33m.[39msetTime
+out([35m45000[39m)[33m;[3
+9m
+     [90m   |[39m 
+[31m[1m^[22m[39m
+     [90m 4 |[39m
+     [90m 5 |[39m 
+describe([32m'NovaSketch 
+Dashboard & Board Flow 
+UI'[39m[33m,[39m () 
+[33m=>[39m {
+     [90m 6 |[39m     
+[36mlet[39m 
+browser[33m;[39m[0m
+
+      at tests/frontend-integ
+ration/board.test.js:3:1
+
+(node:36628) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change at 
+any time
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+(node:29708) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change at 
+any time
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+FAIL tests/frontend-integrati
+on/auth.test.js
+  ΓùÅ Test suite failed to 
+run
+
+    ReferenceError: jest is 
+not defined
+
+    [0m [90m 2 |[39m 
+[36mimport[39m crypto 
+[36mfrom[39m [32m'node:cry
+pto'[39m[33m;[39m
+     [90m 3 |[39m
+    
+[31m[1m>[22m[39m[90m 4 
+|[39m jest[33m.[39msetTime
+out([35m45000[39m)[33m;[3
+9m [90m// UI interactions 
+take longer[39m
+     [90m   |[39m 
+[31m[1m^[22m[39m
+     [90m 5 |[39m
+     [90m 6 |[39m 
+describe([32m'NovaSketch 
+Auth Page Integrations'[39m
+[33m,[39m () [33m=>[39m {
+     [90m 7 |[39m     
+[36mlet[39m 
+browser[33m;[39m[0m
+
+      at tests/frontend-integ
+ration/auth.test.js:4:1
+
+(node:23000) 
+ExperimentalWarning: VM 
+Modules is an experimental 
+feature and might change at 
+any time
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+PASS tests/frontend-integrati
+on/landing.test.js
+[32mjest-html-reporter >> Report generated (./reports/frontend-integration-report.html)[0m
+
+Test Suites: 2 failed, 1 
+passed, 3 total
+Tests:       1 passed, 1 
+total
+Snapshots:   0 total
+Time:        5.514 s
+Ran all test suites.
