@@ -1,0 +1,129 @@
+﻿
+FAIL tests/frontend-regressio
+n/authPage.test.js (65.242 s)
+  Frontend Regression: Auth 
+Page
+    ΓêÜ Regression: /auth 
+page loads without crashing 
+(3 ms)
+    ├ù Regression: email 
+input field exists on /auth 
+(25 ms)
+    ├ù Regression: password 
+input field exists on /auth 
+(4 ms)
+    ├ù Regression: name 
+input for Sign Up exists in 
+DOM (4 ms)
+    ├ù Regression: at least 
+one submit button exists (4 
+ms)
+    ΓêÜ Regression: Google 
+OAuth button hint exists in 
+page source (6 ms)
+    ├ù Regression: "Sign In" 
+text present in page source 
+(12 ms)
+    ├ù Regression: "Sign Up" 
+or "Create Account" present 
+in page source (13 ms)
+    ├ù Regression: Typing 
+into email field registers 
+value (30013 ms)
+    ├ù Regression: Typing 
+into password field 
+registers value (30010 ms)
+    ├ù Regression: Page has 
+total button count > 3 (form 
++ toggle + google) (7 ms)
+    ├ù Regression: 
+Back/return navigation 
+element exists (6 ms)
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+email input field exists on 
+/auth
+    expect(received).toBeGrea
+terThan(expected)
+    Expected: > 0
+    Received:   0
+    [0m [90m 32 |[39m     
+it([32m'Regression: email 
+input field exists on 
+/auth'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 37 |[39m     
+it([32m'Regression: 
+password input field exists 
+on /auth'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {[0m
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+password input field exists 
+on /auth
+    expect(received).toBeGrea
+terThan(expected)
+    Expected: > 0
+    Received:   0
+    [0m [90m 37 |[39m     
+it([32m'Regression: 
+password input field exists 
+on /auth'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 42 |[39m     
+it([32m'Regression: name 
+input for Sign Up exists in 
+DOM'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {[0m
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+name input for Sign Up 
+exists in DOM
+    expect(received).toBeGrea
+terThan(expected)
+    Expected: > 0
+    Received:   0
+    [0m [90m 42 |[39m     
+it([32m'Regression: name 
+input for Sign Up exists in 
+DOM'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 47 |[39m     
+it([32m'Regression: at 
+least one submit button 
+exists'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {[0m
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: at 
+least one submit button 
+exists
+    expect(received).toBeGrea
+terThan(expected)
+    Expected: > 0
+    Received:   0
+    [0m [90m 47 |[39m     
+it([32m'Regression: at 
+least one submit button 
+exists'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 52 |[39m     
+it([32m'Regression: Google 
+OAuth button hint exists in 
+page source'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {[0m
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+"Sign In" text present in 
+page source
+    expect(received).toMatch(
+expected)
+
+

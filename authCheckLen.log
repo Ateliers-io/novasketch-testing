@@ -1,0 +1,22 @@
+﻿
+FAIL tests/frontend-regressio
+n/authPage.test.js (34.143 s)
+    ├ù Regression: React app 
+mounted (HTML longer than 
+10KB)
+    ├ù Regression: password 
+input rendered in DOM
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+React app mounted (HTML 
+longer than 10KB)
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+password input rendered in 
+DOM
+Test Suites: 1 failed, 1 
+total
+Tests:       12 failed, 12 
+total
+
+

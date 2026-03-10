@@ -1,0 +1,59 @@
+﻿
+    ├ù Regression: "Sign In" 
+text in rendered HTML (7 ms)
+    ├ù Regression: "Sign Up" 
+or "Create Account" in 
+rendered HTML (7 ms)
+    ├ù Regression: email 
+input rendered in DOM (5 ms)
+    ├ù Regression: password 
+input rendered in DOM (6 ms)
+    ├ù Regression: at least 
+one form rendered in DOM (5 
+ms)
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+"Sign In" text in rendered 
+HTML
+    Expected pattern: /Sign 
+In/i
+    Received string:  "<html 
+lang=\"en\" class=\"dark\" 
+data-theme=\"dark\"><head>
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+"Sign Up" or "Create 
+Account" in rendered HTML
+    Expected pattern: /Sign 
+Up|Create Account/i
+    Received string:  "<html 
+lang=\"en\" class=\"dark\" 
+data-theme=\"dark\"><head>
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+email input rendered in DOM
+    Expected pattern: 
+/type="email"|type=email/i
+    Received string:  "<html 
+lang=\"en\" class=\"dark\" 
+data-theme=\"dark\"><head>
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: 
+password input rendered in 
+DOM
+    Expected pattern: /type="
+password"|type=password/i
+    Received string:  "<html 
+lang=\"en\" class=\"dark\" 
+data-theme=\"dark\"><head>
+  ΓùÅ Frontend Regression: 
+Auth Page ΓÇ║ Regression: at 
+least one form rendered in 
+DOM
+    Expected pattern: 
+/<form/i
+    Received string:  "<html 
+lang=\"en\" class=\"dark\" 
+data-theme=\"dark\"><head>
+
+

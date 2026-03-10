@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:integration": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/backend-integration --config jest.integration.config.js",
-    "test:regression": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/regression --config jest.regression.config.js",
+    "test:backend-regression": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.backend.regression.config.js",
+    "test:frontend-regression": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.frontend.regression.config.js",
     "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --testPathPatterns=tests/e2e --config jest.e2e.config.js",
     "test:frontend": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.frontend.config.js",
     "test:all": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.integration.config.js"
