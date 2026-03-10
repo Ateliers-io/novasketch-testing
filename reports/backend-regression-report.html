@@ -1,0 +1,278 @@
+<html><head><meta charset="utf-8"/><title>NovaSketch Backend Regression Test Report</title><style type="text/css">:root {
+  --text-primary: #eee;
+  --text-secondary: #aaa;
+  --success: #2ecc71;
+  --success-bright: #1e3d2a;
+  --danger: #e74c3c;
+  --danger-bright: #3d1e1e;
+  --warning: #f39c12;
+  --warning-bright: #3d2c1e;
+  --panel: #1f1f1f;
+  --border: #444;
+  --disabled: #666;
+  background-color: #121212;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">NovaSketch Backend Regression Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2026-03-10 14:28:51</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (3)</div><div class="summary-passed ">3 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (32)</div><div class="summary-passed ">32 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\backend-regression\historyAndShapes.test.js</div><div class="suite-time warn">12.566s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; GET /api/history/:sessionId</div><div class="test-title">Regression: returns empty array for unknown sessionId (no crash)</div><div class="test-status">passed</div><div class="test-duration">0.188s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; GET /api/history/:sessionId</div><div class="test-title">Regression: response is always a JSON array</div><div class="test-status">passed</div><div class="test-duration">0.167s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; DELETE /api/history/:sessionId</div><div class="test-title">Regression: delete on empty session returns { deleted: 0 }</div><div class="test-status">passed</div><div class="test-duration">0.041s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; GET /api/rooms/:roomId/shapes</div><div class="test-title">Regression: returns 404 for non-existent room</div><div class="test-status">passed</div><div class="test-duration">0.104s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; GET /api/rooms/:roomId/shape/:shapeId</div><div class="test-title">Regression: returns 404 for non-existent room + shape</div><div class="test-status">passed</div><div class="test-duration">0.034s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; GET /health</div><div class="test-title">Regression: health endpoint is always reachable</div><div class="test-status">passed</div><div class="test-duration">0.021s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; Unknown routes</div><div class="test-title">Regression: GET /api/nonexistent returns 404 with JSON error</div><div class="test-status">passed</div><div class="test-duration">0.025s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: History &amp; Shape Routes &gt; Unknown routes</div><div class="test-title">Regression: POST /api/unknown returns 404</div><div class="test-status">passed</div><div class="test-duration">0.054s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\backend-regression\authApi.test.js</div><div class="suite-time warn">16.573s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/register</div><div class="test-title">Regression: returns 201 with token + user on valid registration</div><div class="test-status">passed</div><div class="test-duration">0.833s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/register</div><div class="test-title">Regression: returns 409 on duplicate email</div><div class="test-status">passed</div><div class="test-duration">0.626s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/register</div><div class="test-title">Regression: returns 400 when required fields are missing</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/register</div><div class="test-title">Regression: does not accept weak/short passwords</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/login</div><div class="test-title">Regression: returns 200 with token on valid credentials</div><div class="test-status">passed</div><div class="test-duration">1.257s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/login</div><div class="test-title">Regression: returns 401 on wrong password</div><div class="test-status">passed</div><div class="test-duration">0.941s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/login</div><div class="test-title">Regression: returns 401 on non-existent email</div><div class="test-status">passed</div><div class="test-duration">0.023s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; POST /api/auth/login</div><div class="test-title">Regression: returns 400 when body is empty</div><div class="test-status">passed</div><div class="test-duration">0.022s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; GET /api/auth/me</div><div class="test-title">Regression: returns 200 with user profile for valid token</div><div class="test-status">passed</div><div class="test-duration">0.629s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; GET /api/auth/me</div><div class="test-title">Regression: returns 401 without a token</div><div class="test-status">passed</div><div class="test-duration">0.016s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Auth API &gt; GET /api/auth/me</div><div class="test-title">Regression: returns 401 with a tampered token</div><div class="test-status">passed</div><div class="test-duration">0.017s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\backend-regression\canvasAccess.test.js</div><div class="suite-time warn">18.924s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; POST /api/canvas</div><div class="test-title">Regression: creates canvas and returns { canvasId, name, url }</div><div class="test-status">passed</div><div class="test-duration">0.945s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; POST /api/canvas</div><div class="test-title">Regression: defaults name to "Untitled Board" if not provided</div><div class="test-status">passed</div><div class="test-duration">0.618s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; POST /api/canvas</div><div class="test-title">Regression: returns 401 without auth token</div><div class="test-status">passed</div><div class="test-duration">0.026s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; GET /api/canvas/:id</div><div class="test-title">Regression: returns full canvas details</div><div class="test-status">passed</div><div class="test-duration">0.774s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; GET /api/canvas/:id</div><div class="test-title">Regression: returns 404 for non-existent canvas</div><div class="test-status">passed</div><div class="test-duration">0.561s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; GET /api/canvas/mine</div><div class="test-title">Regression: returns all canvases owned by user</div><div class="test-status">passed</div><div class="test-duration">0.52s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; GET /api/canvas/mine</div><div class="test-title">Regression: returns 401 without token</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; PATCH /api/canvas/:id/name</div><div class="test-title">Regression: renames canvas successfully</div><div class="test-status">passed</div><div class="test-duration">0.549s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; PATCH /api/canvas/:id/name</div><div class="test-title">Regression: returns 400 when name not provided</div><div class="test-status">passed</div><div class="test-duration">0.62s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; PATCH /api/canvas/:id/lock</div><div class="test-title">Regression: owner can lock a canvas</div><div class="test-status">passed</div><div class="test-duration">0.446s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; PATCH /api/canvas/:id/lock</div><div class="test-title">Regression: returns 400 when is_locked is not boolean</div><div class="test-status">passed</div><div class="test-duration">0.503s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; DELETE /api/canvas/:id</div><div class="test-title">Regression: owner can delete canvas, it vanishes from DB</div><div class="test-status">passed</div><div class="test-duration">0.49s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend Regression: Canvas CRUD API &gt; DELETE /api/canvas/:id</div><div class="test-title">Regression: non-owner cannot delete canvases</div><div class="test-status">passed</div><div class="test-duration">0.817s</div></div></div></div></details></main></body></html>
