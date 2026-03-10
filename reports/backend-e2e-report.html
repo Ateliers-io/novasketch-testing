@@ -1,0 +1,278 @@
+<html><head><meta charset="utf-8"/><title>NovaSketch Backend E2E Test Report</title><style type="text/css">:root {
+  --text-primary: #eee;
+  --text-secondary: #aaa;
+  --success: #2ecc71;
+  --success-bright: #1e3d2a;
+  --danger: #e74c3c;
+  --danger-bright: #3d1e1e;
+  --warning: #f39c12;
+  --warning-bright: #3d2c1e;
+  --panel: #1f1f1f;
+  --border: #444;
+  --disabled: #666;
+  background-color: #121212;
+}
+
+html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  color: var(--text-primary);
+}
+body {
+  padding: 2rem 1rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+#metadata-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.additional-information-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+}
+
+/** SUMMARY */
+#summary {
+  color: var(--text-primary);
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 0.5rem;
+  background: var(--panel);
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: var(--success);
+  border-left: 0.4rem solid var(--success);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: var(--danger);
+  border-left: 0.4rem solid var(--danger);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-pending {
+  color: var(--warning);
+  border-left: 0.4rem solid var(--warning);
+  padding-left: 0.5rem;
+  margin-bottom: 0.15rem;
+}
+.summary-empty {
+  color: var(--disabled);
+  border-left: 0.4rem solid var(--disabled);
+  margin-bottom: 0.15rem;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: var(--success-bright);
+  color: var(--success);
+}
+.test-result.failed {
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.test-result.pending {
+  background-color: var(--warning-bright);
+  color: var(--warning);
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.85rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed var(--danger);
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 1rem;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: var(--panel);
+  color: var(--text-secondary);
+  border: 0.15rem solid;
+  border-color: var(--panel);
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  border-color: var(--border);
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 1rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.85rem;
+}
+.suite-info .suite-time.warn {
+  background-color: var(--danger);
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 1rem;
+  transform: rotate(180deg) translateY(0.15rem);
+}
+.suite-container[open] .suite-info:before {
+  transform: rotate(0deg) translateY(0.15rem);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--panel);
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: var(--danger-bright);
+  color: var(--danger);
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><main class="jesthtml-content"><header><h1 id="title">NovaSketch Backend E2E Test Report</h1></header><section id="metadata-container"><div id="timestamp">Started: 2026-03-10 14:42:43</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (3)</div><div class="summary-passed ">3 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (28)</div><div class="summary-passed ">28 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></section><details id="suite-1" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\e2e\backend\multiCanvasAndHistory.test.js</div><div class="suite-time warn">26.599s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 1 — User authenticates for the session</div><div class="test-status">passed</div><div class="test-duration">1.274s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 2 — User creates three canvases in sequence</div><div class="test-status">passed</div><div class="test-duration">0.186s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 3 — All three canvases appear in user's canvas list</div><div class="test-status">passed</div><div class="test-duration">0.091s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 4 — User renames all canvases</div><div class="test-status">passed</div><div class="test-duration">0.124s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 5 — User locks then unlocks one canvas (toggle cycle)</div><div class="test-status">passed</div><div class="test-duration">0.06s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 6 — History API returns empty array for a new canvas session</div><div class="test-status">passed</div><div class="test-duration">0.027s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 7 — History DELETE on empty session completes gracefully</div><div class="test-status">passed</div><div class="test-duration">0.025s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 8 — Shape API returns 404 for a non-existent room</div><div class="test-status">passed</div><div class="test-duration">0.022s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 9 — User deletes all three canvases (batch cleanup)</div><div class="test-status">passed</div><div class="test-duration">0.142s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Multi-Canvas Management &amp; Supporting APIs</div><div class="test-title">Step 10 — Health endpoint still responds OK after full session</div><div class="test-status">passed</div><div class="test-duration">0.016s</div></div></div></div></details><details id="suite-2" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\e2e\backend\canvasLifecycle.test.js</div><div class="suite-time warn">27.359s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 1 — Owner registers and gets a session token</div><div class="test-status">passed</div><div class="test-duration">1.268s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 2 — A collaborator registers with a different account</div><div class="test-status">passed</div><div class="test-duration">0.945s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 3 — Owner creates a new canvas board</div><div class="test-status">passed</div><div class="test-duration">0.086s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 4 — Canvas appears in owner's canvas list</div><div class="test-status">passed</div><div class="test-duration">0.085s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 5 — Owner can view full canvas details</div><div class="test-status">passed</div><div class="test-duration">0.065s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 6 — Owner renames the canvas</div><div class="test-status">passed</div><div class="test-duration">0.075s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 7 — Collaborator joins the canvas via join link</div><div class="test-status">passed</div><div class="test-duration">0.076s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 8 — Owner locks the canvas (preventing writes)</div><div class="test-status">passed</div><div class="test-duration">0.033s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 9 — Canvas locked state is persisted and visible</div><div class="test-status">passed</div><div class="test-duration">0.048s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 10 — Owner unlocks the canvas</div><div class="test-status">passed</div><div class="test-duration">0.027s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 11 — Collaborator cannot delete canvas (ownership enforced)</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Canvas Lifecycle</div><div class="test-title">Step 12 — Owner deletes the canvas (lifecycle complete)</div><div class="test-status">passed</div><div class="test-duration">0.06s</div></div></div></div></details><details id="suite-3" class="suite-container" open=""><summary class="suite-info"><div class="suite-path">C:\Users\gjyos\OneDrive\Desktop\SE_Project\novasketch-testing\tests\e2e\backend\authJourney.test.js</div><div class="suite-time warn">28.763s</div></summary><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 1 — User registers a new account</div><div class="test-status">passed</div><div class="test-duration">1.259s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 2 — User logs in with registered credentials</div><div class="test-status">passed</div><div class="test-duration">0.962s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 3 — User fetches own profile with the login token</div><div class="test-status">passed</div><div class="test-duration">0.036s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 4 — Login fails with wrong password (security check)</div><div class="test-status">passed</div><div class="test-duration">0.913s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 5 — Re-registering same email is blocked (409)</div><div class="test-status">passed</div><div class="test-duration">0.028s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">Backend E2E: Full Auth User Journey</div><div class="test-title">Step 6 — First-registration token is immediately usable for /api/auth/me</div><div class="test-status">passed</div><div class="test-duration">0.941s</div></div></div></div></details></main></body></html>
